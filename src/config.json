@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "Admin",
+    "description": "description"
+  },
+  "theme": "rose-dark",
+  "routeBase": {
+    "/": "home",
+    "/route-demo": {
+      "public": true,
+      "pure": true,
+      "role": "admin",
+      "src": {
+        "default": "about",
+        "sidebar": "odd/notFound"
+      }
+    },
+    "/element": "element",
+    "/proprietary": "proprietary",
+    "/table": "table",
+    "/profile": "profile",
+    "/editor": "editor",
+    "/setting": "setting"
+  },
+  "api": {
+    "warmleaf": "orgs/warmleaf/repos"
+  }
+}
