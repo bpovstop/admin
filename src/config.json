@@ -17,6 +17,7 @@
     },
     "/element": "element",
     "/proprietary": "proprietary",
+    "/proprietary/markdown": "proprietary",
     "/table": "table",
     "/profile": "profile",
     "/editor": "editor",

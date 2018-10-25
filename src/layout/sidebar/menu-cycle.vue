@@ -1,19 +1,33 @@
 <template>
-    <component :is="wrapper" class="menu-cycle-wrapper" :href="wrapper === 'a' && menu.url" :target="getTarget(menu.target)">
-        <component :is="name" :index="menu.url || menu.name" :route="fixRoutePath(menu)" :disabled="menu.disable">
-            <template slot="title">
-                <i :class="menu.icon" v-if="menu.icon"></i>
-                <i class="el-icon-minus" v-if="menu.group && close"></i>
-                <span slot="title" v-if="!menu.group">{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
-                <span slot="title" v-if="menu.group && !close">{{ menu.group }}</span>
-            </template>
-            <menu-cycle v-if="menu.children" v-for="item in menu.children" :key="item.name" :menu="item"/>
-        </component>
+    <component 
+      :is="componentName" 
+      :index="menu.url || menu.name" 
+      :route="fixRoutePath(menu)" 
+      :disabled="menu.disable"
+    >
+        <template v-if="flag" slot="title">
+            <i :class="menu.icon" v-if="menu.icon"></i>
+            <i class="el-icon-minus" v-if="menu.group && close"></i>
+            <span slot="title" v-if="!menu.group">{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
+            <span slot="title" v-if="menu.group && !close">{{ menu.group }}</span>
+            <a class="link" :href="menu.url" :target="getTarget(menu.target)" v-if="isLink"/>
+        </template>
+        <i :class="menu.icon" v-if="!flag && menu.icon"></i>
+        <i class="el-icon-minus" v-if="!flag && menu.group && close"></i>
+        <span slot="title" v-if="!flag && !menu.group">{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
+        <span slot="title" v-if="!flag && menu.group && !close">{{ menu.group }}</span>
+        <a class="link" :href="menu.url" :target="getTarget(menu.target)" v-if="isLink"/>
+        <menu-cycle v-if="menu.children" v-for="item in menu.children" :key="item.name" :menu="item"/>
     </component>
 </template>
 <style lang="stylus" scoped>
-.menu-cycle-wrapper {
-    display: block;
+.link {
+  display: flex;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  margin-left: -20px;
 }
 </style>
 
@@ -41,14 +55,14 @@ export default {
   },
   data() {
     const { children, url, group } = this.menu || {};
-    const flag = Array.isArray(children) && children.length > 0;
+    this.flag = Array.isArray(children) && children.length > 0;
     this.defaultHook = self.location.hash;
-    this.wrapper = url && /\/\//.test(url) ? "a" : "div";
-    this.name = group
+    this.componentName = group
       ? "el-menu-item-group"
-      : flag
+      : this.flag
         ? "el-submenu"
         : "el-menu-item";
+    this.isLink = url && /\/\//.test(url);
     return {};
   }
 };

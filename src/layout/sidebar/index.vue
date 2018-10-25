@@ -2,7 +2,7 @@
     <div id="sidebar" :style="{backgroundImage: 'url(' + sidebarImage + ')'}">
         <logo @click.native="logoClick"/>
         <div class="inner">
-          <el-menu :router="true" :default-active="current" :collapse="collapse" class="sidebar-menu">
+          <el-menu :router="true" :default-active="current" :collapse="collapse" class="sidebar-menu" :collapse-transition="false">
             <menu-cycle v-for="item in menu" :key="item.name" :menu="item" :close="collapse"/>
           </el-menu>
         </div>
@@ -63,12 +63,12 @@ export default {
   },
   methods: {
     logoClick() {
-      console.log("click", this.collapse);
       this.collapse = !this.collapse;
     }
   },
   data() {
     this.current = self.location.pathname;
+    console.log(this.current)
     return {
       collapse: false,
       menu: [
@@ -122,7 +122,7 @@ export default {
             {
               name: "markdown",
               label: "Markdown编辑器",
-              url: "/proprietary#markdown",
+              url: "/proprietary/markdown",
               icon: "el-icon-menu"
             },
             {
