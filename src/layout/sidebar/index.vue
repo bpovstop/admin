@@ -1,11 +1,7 @@
 <template>
     <div id="sidebar" :style="{backgroundImage: 'url(' + sidebarImage + ')'}">
         <logo @click.native="logoClick"/>
-        <div class="inner">
-          <el-menu :router="true" :default-active="current" :collapse="collapse" class="sidebar-menu" :collapse-transition="false">
-            <menu-cycle v-for="item in menu" :key="item.name" :menu="item" :close="collapse"/>
-          </el-menu>
-        </div>
+        <o-menu active="current" :collapse="collapse" :data="menu" class="menu"/>
     </div>
 </template>
 
@@ -16,7 +12,7 @@
   background-size: cover;
   background-position: center center;
 
-  .inner {
+  .menu {
     position: relative;
     z-index: 2;
   }
@@ -55,10 +51,11 @@
 <script>
 import logo from "@/components/logo";
 import menuCycle from "./menu-cycle";
+import menu from "@/components/menu";
 export default {
   name: "sidebar",
   components: {
-    [menuCycle.name]: menuCycle,
+    [menu.name]: menu,
     [logo.name]: logo
   },
   methods: {
