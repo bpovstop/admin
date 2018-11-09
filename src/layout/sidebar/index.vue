@@ -1,5 +1,5 @@
 <template>
-    <div id="sidebar" :style="{backgroundImage: 'url(' + sidebarImage + ')'}">
+    <div id="sidebar" :style="{backgroundImage: 'url(' + sidebarImage + ')', width: sidebarWidth + 'px'}">
         <logo @click.native="logoClick"/>
         <o-menu active="current" :collapse="collapse" :data="menu" class="menu"/>
     </div>
@@ -42,13 +42,11 @@
     }
   }
 
-  &:not(.el-menu--collapse) {
-    width: 240px;
-  }
 }
 </style>
 
 <script>
+import { bindComputed } from "@okvue/vuex-bind";
 import logo from "@/components/logo";
 import menuCycle from "./menu-cycle";
 import menu from "@/components/menu";
@@ -58,14 +56,25 @@ export default {
     [menu.name]: menu,
     [logo.name]: logo
   },
+  extends: {
+    computed: bindComputed(
+      "sidebarLock",
+      "sidebarWidth",
+      "canMenuMultipleExpand",
+      "sidebarImage"
+    )
+  },
   methods: {
     logoClick() {
-      this.collapse = !this.collapse;
+      console.log(this)
+      if (!this.sidebarLock) {
+        this.collapse = !this.collapse;
+      }
     }
   },
   data() {
     this.current = self.location.pathname;
-    console.log(this.current)
+    console.log(this.current);
     return {
       collapse: false,
       menu: [
@@ -142,9 +151,7 @@ export default {
             }
           ]
         }
-      ],
-      sidebarImage:
-        "https://demos.creative-tim.com/material-dashboard-pro/assets/img/sidebar-1.jpg"
+      ]
     };
   }
 };

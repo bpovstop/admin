@@ -10,7 +10,7 @@
     position: relative;
 
     span {
-        color: #fff;
+        color: var(--color-primary);
     }
 }
 </style>

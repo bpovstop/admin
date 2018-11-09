@@ -1,11 +1,7 @@
 <template>
     <o-view ver hor="space-between" id="header-inner">
       <o-view>
-        <search :do="doQuery" :interval="1000">
-          <span>result:</span>
-          <span>test</span>
-          <p v-for="(item, i) in search" :key="i">{{item}}</p>
-        </search>
+        <router-link to="/login">Login Page</router-link>
       </o-view>
       <o-view>
         <avatar :src="avatar"/>

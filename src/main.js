@@ -5,14 +5,14 @@ import view from "@okvue/view";
 
 import app from "./app.vue";
 import routeService from "./service/router";
-import themesService from "./service/themes";
+import themesService from "./service/theme";
 import componentService from "./service/component";
 import directiveService from "./service/directive";
+import storageService from "./service/storage";
 import store from "./store";
 import sidebar from "./layout/sidebar";
 import header from "./layout/header";
 import layout from "./layout";
-import Storage from "./storage";
 import conf from "./config";
 
 // 初始化插件
@@ -23,7 +23,9 @@ Vue.use(view);
 
 // 初始化服务
 componentService(Vue);
+Vue.use(themesService);
 directiveService(Vue);
+storageService(Vue);
 
 // 初始化页面
 new Vue({
@@ -41,12 +43,7 @@ new Vue({
     layoutTemplate: layout,
     routeBase: conf.routeBase
   }),
-  theme: themesService(conf.theme),
+  theme: conf.theme,
   store,
   render: h => h(app)
 }).$mount("#app");
-
-const s = new Storage();
-s.deep.add("V", "ook");
-s.add(1, 2);
-console.log(s);

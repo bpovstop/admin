@@ -3,7 +3,10 @@
     "name": "Admin",
     "description": "description"
   },
-  "theme": "rose-dark",
+  "theme": {
+    "name": "rose-dark",
+    "color": "#66bb6a"
+  },
   "routeBase": {
     "/": "home",
     "/route-demo": {
@@ -21,7 +24,11 @@
     "/table": "table",
     "/profile": "profile",
     "/editor": "editor",
-    "/setting": "setting"
+    "/setting": "setting",
+    "/login": {
+      "pure": true,
+      "src": "login"
+    }
   },
   "api": {
     "warmleaf": "orgs/warmleaf/repos"
