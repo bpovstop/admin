@@ -25,6 +25,8 @@ import {
   Select,
   Submenu,
   Switch,
+  TabPane,
+  Tabs,
   Tooltip,
   Upload
 } from "element-ui";
@@ -48,6 +50,8 @@ export default {
     Vue.component(Select.name, Select);
     Vue.component(Submenu.name, Submenu);
     Vue.component(Switch.name, Switch);
+    Vue.component(TabPane.name, TabPane);
+    Vue.component(Tabs.name, Tabs);
     Vue.component(Tooltip.name, Tooltip);
     Vue.component(Upload.name, Upload);
 

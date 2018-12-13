@@ -9,8 +9,18 @@ export default {
   },
   routes: {
     "/": "home",
-    "/setting": "setting",
-    "/element": "element",
+    "/setting": {
+      meta:{
+        title: "setting"
+      },
+      src: "setting"
+    },
+    "/element": {
+      meta:{
+        title: "element"
+      },
+      src: "element"
+    },
     "/login": {
       pure: true,
       src: "login"

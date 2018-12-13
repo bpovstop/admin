@@ -1,7 +1,7 @@
 <template>
   <component
     :is="componentName"
-    :index="menu.url || menu.name"
+    :index="menu.name"
     :route="fixRoutePath(menu)"
     :disabled="menu.disable"
     :show-timeout="0"
@@ -39,12 +39,20 @@ export default {
   methods: {
     fixRoutePath(route) {
       if (!route) return null;
-      const { url, ...rest } = route;
+      const {
+        name /* eslint-disable-line no-unused-vars */,
+        url,
+        label,
+        icon,
+        ...rest
+      } = route;
 
-      return {
+      const routeObj = {
+        meta: { label, icon },
         ...rest,
         path: /\/\//.test(url) ? self.location.hash || "/#" : url
       };
+      return routeObj;
     },
     getTarget(value) {
       if (!value) return null;
@@ -58,8 +66,8 @@ export default {
     this.componentName = group
       ? "el-menu-item-group"
       : this.flag
-        ? "el-submenu"
-        : "el-menu-item";
+      ? "el-submenu"
+      : "el-menu-item";
     this.isLink = url && /\/\//.test(url);
     return {};
   }

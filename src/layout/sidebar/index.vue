@@ -43,7 +43,7 @@ export default {
               group: "分组",
               children: [
                 {
-                  name: "button",
+                  name: "setting",
                   label: "设置页面",
                   url: "/setting",
                   icon: "el-icon-menu"

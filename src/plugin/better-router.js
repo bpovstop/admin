@@ -10,6 +10,18 @@ function asyncLoad(src) {
   return resolve => require([`../views/${src}`], m => resolve(m.default));
 }
 
+function getLayout(src) {
+  let component = {};
+  if (typeof src === "string") {
+    component.default = asyncLoad(src);
+  } else {
+    Object.keys(src).map(s => {
+      component[s] = asyncLoad(src[s]);
+    });
+  }
+  return component;
+}
+
 function build(rules, layout) {
   const result = [];
   const path_array = Object.keys(rules);
@@ -19,30 +31,22 @@ function build(rules, layout) {
     let _rest = null;
     const info = rules[path];
 
-    if (info.src || info.pure) {
-      const tmp$1 = {};
-      const { pure, src, ...rest } = info;
-      _rest = rest;
-      if (typeof src === "string") {
-        tmp$1.default = asyncLoad(src);
-      } else {
-        Object.keys(src).map(s => {
-          tmp$1[s] = asyncLoad(src[s]);
-        });
-      }
-      if (pure) {
-        components = tmp$1;
-      } else {
-        components = { ...layout, ...tmp$1 };
-      }
-    } else {
+    if (typeof info === "string") {
       if (partable_layout) {
         components = { ...layout.parts };
       }
-      if (typeof info === "string") {
-        components.default = asyncLoad(info);
+      components.default = asyncLoad(info);
+    } else {
+      const { pure, src, ...rest } = info;
+      _rest = rest;
+      const gl = getLayout(src);
+      if (pure) {
+        components.default = partable_layout ? gl : gl.default;
       } else {
-        components.default = info;
+        components = {
+          ...partable_layout,
+          ...gl
+        };
       }
     }
     result.push({
@@ -51,6 +55,7 @@ function build(rules, layout) {
       ..._rest
     });
   });
+
   return result;
 }
 
@@ -90,13 +95,14 @@ export default function BetterRouter(option) {
   config.routes = routes.concat(_odd, _home, _notmatched);
   const router = new Router(config);
   //   const auth = window.auth;
-  //   router.beforeEach((to, from, next) => {
-  //     console.log(window.auth, from.path, to.path);
-  //     if (to.public || window.auth || to.path === "/login") {
-  //       next();
-  //       return;
-  //     }
-  //     next({ path: "/login" });
-  //   });
+  // router.beforeEach((to, from, next) => {
+  // console.log(to);
+  // if (to.public || window.auth || to.path === "/login") {
+  //   next();
+  //   return;
+  // }
+  // next({ path: "/login" });
+  // next();
+  // });
   return router;
 }
