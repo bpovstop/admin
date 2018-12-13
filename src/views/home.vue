@@ -1,15 +1,16 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <router-link to="/about">About</router-link> |
-    <router-link to="/404">404</router-link> |
-    <router-link to="/500">500</router-link> |
-    <router-link to="/444">404 not found</router-link>
+    <h2>Admin(github@owcc)</h2>
   </div>
 </template>
 
-<script>
-export default {
-  name: "home"
-};
-</script>
+<style lang="scss" scoped>
+.home {
+  width: 100%;
+  text-align: center;
+  img {
+    margin-top: 200px;
+  }
+}
+</style>

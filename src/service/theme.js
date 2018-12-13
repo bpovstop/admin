@@ -38,7 +38,7 @@ function setTheme(theme) {
   themeMeta.setAttribute("content", theme.color);
   update(theme.color);
 }
-const themeService = {
+const Theme = {
   install(Vue) {
     if (installed) {
       return;
@@ -52,7 +52,7 @@ const themeService = {
 };
 
 if (typeof window !== "undefined" && window.Vue) {
-  themeService.install(window.Vue);
+  Theme.install(window.Vue);
 }
 
-export default themeService;
+export default Theme;

@@ -1,37 +1,33 @@
 <template>
-    <component 
-      :is="componentName" 
-      :index="menu.url || menu.name" 
-      :route="fixRoutePath(menu)" 
-      :disabled="menu.disable"
-      :show-timeout="0"
-      :hide-timeout="0"
-    >
-        <template v-if="flag" slot="title">
-            <i :class="menu.icon" v-if="menu.icon"></i>
-            <i class="el-icon-minus" v-if="menu.group && close"></i>
-            <span slot="title" v-if="!menu.group">{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
-            <span slot="title" v-if="menu.group && !close">{{ menu.group }}</span>
-            <a class="link" :href="menu.url" :target="getTarget(menu.target)" v-if="isLink"/>
-        </template>
-        <i :class="menu.icon" v-if="!flag && menu.icon"></i>
-        <i class="el-icon-minus" v-if="!flag && menu.group && close"></i>
-        <span slot="title" v-if="!flag && !menu.group">{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
-        <span slot="title" v-if="!flag && menu.group && !close">{{ menu.group }}</span>
-        <a class="link" :href="menu.url" :target="getTarget(menu.target)" v-if="isLink"/>
-        <menu-cycle v-if="menu.children" v-for="item in menu.children" :key="item.name" :menu="item"/>
-    </component>
+  <component
+    :is="componentName"
+    :index="menu.url || menu.name"
+    :route="fixRoutePath(menu)"
+    :disabled="menu.disable"
+    :show-timeout="0"
+    :hide-timeout="0"
+  >
+    <template v-if="flag" slot="title">
+      <i :class="menu.icon" v-if="menu.icon"></i>
+      <i class="el-icon-minus" v-if="menu.group && close"></i>
+      <span
+        slot="title"
+        v-if="!menu.group"
+      >{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
+      <span slot="title" v-if="menu.group && !close">{{ menu.group }}</span>
+      <a class="link" :href="menu.url" :target="getTarget(menu.target)" v-if="isLink"/>
+    </template>
+    <i :class="menu.icon" v-if="!flag && menu.icon"></i>
+    <i class="el-icon-minus" v-if="!flag && menu.group && close"></i>
+    <span
+      slot="title"
+      v-if="!flag && !menu.group"
+    >{{ !menu.children ? menu.label : close ? "" : menu.label }}</span>
+    <span slot="title" v-if="!flag && menu.group && !close">{{ menu.group }}</span>
+    <a class="link" :href="menu.url" :target="getTarget(menu.target)" v-if="isLink"/>
+    <menu-cycle v-if="menu.children" v-for="item in menu.children" :key="item.name" :menu="item"/>
+  </component>
 </template>
-<style lang="stylus" scoped>
-.link {
-  display: flex;
-  top: 0;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  margin-left: -20px;
-}
-</style>
 
 <script>
 export default {
@@ -43,7 +39,7 @@ export default {
   methods: {
     fixRoutePath(route) {
       if (!route) return null;
-      const { name, url, ...rest } = route;
+      const { url, ...rest } = route;
 
       return {
         ...rest,
@@ -69,3 +65,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.link {
+  display: flex;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  margin-left: -20px;
+}
+</style>

@@ -1,5 +1,5 @@
 import Storage from "@okvue/storage";
 
-export default function storageService(Vue) {
+export default function storage(Vue) {
   Vue.prototype.$storage = new Storage();
 }

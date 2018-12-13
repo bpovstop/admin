@@ -1,19 +1,9 @@
 <template>
-    <div
-        class="o-avatar"
-        :style="{width:`${size}px`,height:`${size}px`,borderColor,borderWidth,backgroundImage:`url(${src})`}"
-    />
+  <div
+    class="o-avatar"
+    :style="{width:`${size}px`,height:`${size}px`,borderColor,borderWidth,backgroundImage:`url(${src})`}"
+  />
 </template>
-<style lang="stylus" scoped>
-.o-avatar {
-    overflow: hidden;
-    border-style: solid;
-    border-radius: 50%;
-    background-size: contain;
-    box-sizing: border-box;
-    background-clip: content-box;
-}
-</style>
 
 <script>
 export default {
@@ -35,4 +25,13 @@ export default {
   }
 };
 </script>
-
+<style lang="scss" scoped>
+.o-avatar {
+  overflow: hidden;
+  border-style: solid;
+  border-radius: 50%;
+  background-size: contain;
+  box-sizing: border-box;
+  background-clip: content-box;
+}
+</style>

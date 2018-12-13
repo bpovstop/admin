@@ -11,10 +11,9 @@ export default {
     [menuCycle.name]: menuCycle
   },
   props: {
-      active: String,
-      collapse: Boolean,
-      data: Array
+    active: String,
+    collapse: Boolean,
+    data: Array
   }
 };
 </script>
-

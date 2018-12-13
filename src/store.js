@@ -8,12 +8,8 @@ export default new Vuex.Store(
   binding({
     state: {
       canMenuMultipleExpand: false,
-      ifSync: false,
       sidebarLock: true,
-      sidebarWidth: 240,
-      useTab: false,
-      pageMinWidth: 900,
-      sidebarImage: localStorage.getItem('sidebarImg')
+      sidebarWidth: 240
     },
     getters: {},
     mutations: {},

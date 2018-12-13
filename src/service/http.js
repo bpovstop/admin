@@ -4,15 +4,25 @@ import config from "../config";
 
 Vue.use(Vuefetch);
 
-function filter(data) {
+/**
+ * @params {data} 解析后的数据
+ */
+function filter() {
   // do something
 }
-function afterResponse(response) {
+
+/**
+ * @params {response} Response对象
+ */
+function afterResponse() {
   // do something
 }
-function failed(http, info) {
+
+/**
+ * @params {http, info} HttpError对象 错误详情
+ */
+function failed() {
   // do something
-  console.warn(http, info);
 }
 
 const common = {
@@ -52,6 +62,5 @@ if (process.env.VUE_APP_ENDPOINT) {
     });
   }
 }
-console.log(VuefetchConfig, process.env.VUE_APP_ENDPOINT);
 
 export default new Vuefetch.config(VuefetchConfig);
