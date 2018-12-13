@@ -10,13 +10,13 @@ export default {
   routes: {
     "/": "home",
     "/setting": {
-      meta:{
+      meta: {
         title: "setting"
       },
       src: "setting"
     },
     "/element": {
-      meta:{
+      meta: {
         title: "element"
       },
       src: "element"

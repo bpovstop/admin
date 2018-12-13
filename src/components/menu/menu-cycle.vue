@@ -66,8 +66,8 @@ export default {
     this.componentName = group
       ? "el-menu-item-group"
       : this.flag
-      ? "el-submenu"
-      : "el-menu-item";
+        ? "el-submenu"
+        : "el-menu-item";
     this.isLink = url && /\/\//.test(url);
     return {};
   }
