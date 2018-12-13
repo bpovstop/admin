@@ -41,7 +41,7 @@ export default {
     }
   },
   watch: {
-    $route: function(to, from) {
+    $route: function(to) {
       this.initTab(to);
     }
   },
