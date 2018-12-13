@@ -8,22 +8,11 @@
         <router-view name="header"/>
       </o-view>
       <o-view flex column ovef="auto" class="main">
-        <tab-route/>
-        <keep-alive :max="10">
-          <router-view :style="{flex:1}"/>
-        </keep-alive>
+        <router-view :style="{flex:1}"/>
       </o-view>
     </o-view>
   </o-view>
 </template>
-<script>
-import Tab from "./tab";
-export default {
-  components: {
-    [Tab.name]: Tab
-  }
-};
-</script>
 
 <style lang="scss" scoped>
 .main {
