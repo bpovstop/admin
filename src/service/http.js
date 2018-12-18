@@ -50,7 +50,8 @@ let VuefetchConfig = null;
 if (process.env.VUE_APP_ENDPOINT) {
   const domains = process.env.VUE_APP_ENDPOINT.split(";");
   if (domains.length === 1) {
-    common.prefix = domains[0];
+    common.prefix =
+      process.env.VUE_APP_LOCAL_PROXY === "true" ? location.origin : domains[0];
     common.name = domains[0];
     common.api = config.api;
     VuefetchConfig = common;
@@ -58,7 +59,12 @@ if (process.env.VUE_APP_ENDPOINT) {
     // 这里对相同配置的多个接口统一配置, 如果单个配置间有很大差异, 推荐单独写
     VuefetchConfig = [];
     domains.map(prefix => {
-      VuefetchConfig.push({ prefix, name: prefix, ...common });
+      VuefetchConfig.push({
+        prefix:
+          process.env.VUE_APP_LOCAL_PROXY === "true" ? location.origin : prefix,
+        name: prefix,
+        ...common
+      });
     });
   }
 }
