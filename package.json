@@ -11,7 +11,7 @@
   "dependencies": {
     "@okvue/storage": "^0.1.4",
     "@okvue/view": "^0.2.2",
-    "@okvue/vue-fetch": "^0.2.6",
+    "@okvue/vue-fetch": "^0.2.13",
     "@okvue/vuex-bind": "^0.1.2",
     "@tinymce/tinymce-vue": "^1.1.0",
     "element-ui": "^2.4.8",
